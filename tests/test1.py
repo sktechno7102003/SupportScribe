@@ -1,0 +1,21 @@
+import os
+import json
+from datasets import load_dataset
+
+def test_files_exist():
+    assert os.path.exists("data/train.jsonl"), "train.jsonl is missing!"
+    assert os.path.exists("data/val.jsonl"), "val.jsonl is missing!"
+
+def test_huggingface_dataset_loadable():
+    # If this fails, your JSONL formatting is broken
+    dataset = load_dataset("json", data_files={"train": "data/train.jsonl", "val": "data/val.jsonl"})
+    assert len(dataset["train"]) > 0
+    assert len(dataset["val"]) > 0
+
+def test_chatml_formatting():
+    with open("data/train.jsonl", "r") as f:
+        first_row = json.loads(f.readline())
+        text = first_row.get("text", "") # Assuming your pipeline maps the formatted string to a 'text' key
+        assert "<|im_start|>system" in text, "Missing ChatML system token"
+        assert "<|im_end|>" in text, "Missing ChatML end token"
+        assert "<|im_start|>user" in text, "Missing ChatML user token"
