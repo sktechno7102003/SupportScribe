@@ -21,6 +21,7 @@ target_json = json.dumps({
     "recommended_action" : "Trigger automated password/MFA reset link to verified corporate email."
 })
 
+# Ye structure hai apna qwen model isi structure me input leta hai, chatml conversation
 messages = [
     {"role":"system", "content":SYSTEM_PROMPT},
     {"role":"user", "content":raw_user_ticket},
@@ -29,7 +30,9 @@ messages = [
 
 # Render the formatted string using the model's native ChatML template
 
-formatted_chatml = tokenizer.apply_chat_template(messages, tokenize = False)
+formatted_chatml = tokenizer.apply_chat_template(messages, tokenize = False) # Ye chatml template me conver tkr dega and 
+# control tokens v khud hi add kr dega
+
 print("Formatted ChatML string with Control tokens:")
 print(formatted_chatml)
 

@@ -33,3 +33,4 @@ def generate_mock_tickets(num_tickets: int = 250) -> list:
             "recommended_action": "Review immediately."
         })
     return data
+
