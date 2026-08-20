@@ -15,7 +15,14 @@ def test_huggingface_dataset_loadable():
 def test_chatml_formatting():
     with open("data/train.jsonl", "r") as f:
         first_row = json.loads(f.readline())
-        text = first_row.get("text", "") # Assuming your pipeline maps the formatted string to a 'text' key
+        text = first_row.get("0", "") # your pipeline maps the formatted string to a '0' key
         assert "<|im_start|>system" in text, "Missing ChatML system token"
         assert "<|im_end|>" in text, "Missing ChatML end token"
         assert "<|im_start|>user" in text, "Missing ChatML user token"
+
+# Running test1 to verify whether dps1 has been solved successfully
+test_files_exist()
+print()
+test_huggingface_dataset_loadable()
+print()
+test_chatml_formatting()
