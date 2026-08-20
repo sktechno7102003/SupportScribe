@@ -87,6 +87,7 @@ def build_instruction_dataset(df: pd.DataFrame, system_prompt:str):
     rejected_rows = []
 
     for idx, row in df.iterrows(): # Har row pe ek ek karke iterate krega, yaha pe ek row ek mock data row hai
+        # ye ek csv file ke har row pe iterte kr rha so json structure khtm ho gya hai so firse usko restore krna padega
         try:
             # validate target payload
             target_data = {
