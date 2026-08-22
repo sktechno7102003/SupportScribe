@@ -1,3 +1,4 @@
+# PS -> Load the model in 4 bit and using cola gpu find out the vram usage
 # %%
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
